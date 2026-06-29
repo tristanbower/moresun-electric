@@ -17,7 +17,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://moresunelectric.com"),
+  metadataBase: new URL("https://moresun-electric.com"),
   title: {
     default: "MoreSun Electric — Wired for the energy era",
     template: "%s · MoreSun Electric",

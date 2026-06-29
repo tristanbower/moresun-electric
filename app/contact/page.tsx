@@ -123,11 +123,18 @@ export default function ContactPage() {
               </span>
               <div>
                 <div style={detailLabel}>Call us</div>
-                <div
-                  style={{ fontWeight: 700, fontSize: 19, letterSpacing: "-.01em" }}
+                <a
+                  href="tel:+19055365567"
+                  style={{
+                    fontWeight: 700,
+                    fontSize: 19,
+                    letterSpacing: "-.01em",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
                 >
-                  (000) 000-0000
-                </div>
+                  905-536-5567
+                </a>
                 <div
                   style={{ color: "var(--text-faint)", fontSize: 14, marginTop: 3 }}
                 >
@@ -143,16 +150,19 @@ export default function ContactPage() {
               </span>
               <div>
                 <div style={detailLabel}>Email</div>
-                <div
+                <a
+                  href="mailto:service@moresun-electric.com"
                   style={{
                     fontWeight: 700,
                     fontSize: 19,
                     letterSpacing: "-.01em",
                     wordBreak: "break-word",
+                    color: "inherit",
+                    textDecoration: "none",
                   }}
                 >
-                  hello@moresunelectric.com
-                </div>
+                  service@moresun-electric.com
+                </a>
                 <div
                   style={{ color: "var(--text-faint)", fontSize: 14, marginTop: 3 }}
                 >

@@ -78,6 +78,14 @@ const RESIDENTIAL = [
     title: "Powerwall",
     body: "Tesla battery storage that banks solar by day and backs up your home by night — seamless, silent, certified.",
   },
+  {
+    title: "Home Battery Backup",
+    body: "Tesla Powerwall whole-home backup that keeps the lights on through outages and stores your solar and off-peak energy for exactly when you need it.",
+  },
+  {
+    title: "Home EV Charger Install",
+    body: "Professional Level 2 home charger installation by licensed electricians — and it includes a FREE SWTCH charger, so you get EV-ready hardware and expert install in one price.",
+  },
 ];
 
 export default function SolutionsPage() {

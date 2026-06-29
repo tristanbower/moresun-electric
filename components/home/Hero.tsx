@@ -47,6 +47,7 @@ export default function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "flex-end",
+        paddingTop: "clamp(104px,14vh,150px)",
         overflow: "hidden",
       }}
     >

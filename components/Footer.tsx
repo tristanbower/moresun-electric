@@ -91,6 +91,12 @@ export default function Footer() {
               <Link href="/solutions" className="foot-link">
                 Home Developer Program
               </Link>
+              <Link href="/solutions" className="foot-link">
+                Home Battery Backup
+              </Link>
+              <Link href="/solutions" className="foot-link">
+                Home EV Charger Install
+              </Link>
             </div>
           </div>
 
@@ -120,8 +126,12 @@ export default function Footer() {
                 fontSize: 15,
               }}
             >
-              <span>hello@moresunelectric.com</span>
-              <span>(000) 000-0000</span>
+              <a href="mailto:service@moresun-electric.com" className="foot-link">
+                service@moresun-electric.com
+              </a>
+              <a href="tel:+19055365567" className="foot-link">
+                905-536-5567
+              </a>
               <span style={{ color: "var(--text-faint)" }}>
                 Serving the Greater Metro Area
               </span>
