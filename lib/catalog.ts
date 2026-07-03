@@ -16,7 +16,7 @@ export const CATALOG: Product[] = [
   {
     id: "cp-flex",
     category: "EV Charging",
-    name: "ChargePoint Home Flex",
+    name: "ChargePoint Home Flex Hardwired",
     desc: "Level 2 home charger, up to 50A. Wi-Fi connected with scheduling and energy tracking in the app.",
     price: "from $1,899",
     pricenote: "Installed",
@@ -26,7 +26,7 @@ export const CATALOG: Product[] = [
   {
     id: "cp-home",
     category: "EV Charging",
-    name: "ChargePoint Home",
+    name: "ChargePoint Home Plug-In",
     desc: "Reliable 32A Level 2 charging for daily drivers. Simple, durable, and weather-rated for outdoor mounting.",
     price: "from $1,499",
     pricenote: "Installed",
