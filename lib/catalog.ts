@@ -20,7 +20,7 @@ export const CATALOG: Product[] = [
     desc: "Level 2 home charger, up to 50A. Wi-Fi connected with scheduling and energy tracking in the app.",
     price: "from $1,899",
     pricenote: "Installed",
-    photo: "PHOTO — wall-mounted charger",
+    photo: "/shop/cp-flex.png",
     featured: false,
   },
   {
@@ -30,7 +30,7 @@ export const CATALOG: Product[] = [
     desc: "Reliable 32A Level 2 charging for daily drivers. Simple, durable, and weather-rated for outdoor mounting.",
     price: "from $1,499",
     pricenote: "Installed",
-    photo: "PHOTO — charger in garage",
+    photo: "/shop/cp-home.png",
     featured: false,
   },
   {
@@ -40,7 +40,7 @@ export const CATALOG: Product[] = [
     desc: "Two-way charging that turns a compatible EV into whole-home backup power. Our headline install.",
     price: "from $5,400",
     pricenote: "Installed",
-    photo: "PHOTO — V2H unit + panel",
+    photo: "/shop/v2h.png",
     featured: true,
   },
   {
@@ -50,7 +50,7 @@ export const CATALOG: Product[] = [
     desc: "Integrated battery and solar inverter. Stores energy, runs your home through outages, and shifts off peak rates.",
     price: "from $11,500",
     pricenote: "Installed",
-    photo: "PHOTO — Powerwall on wall",
+    photo: "/shop/pw3.png",
     featured: false,
   },
   {
@@ -60,7 +60,7 @@ export const CATALOG: Product[] = [
     desc: "Add capacity to an existing Powerwall 3 for longer backup and bigger loads. Stackable up to four units.",
     price: "from $7,200",
     pricenote: "Installed",
-    photo: "PHOTO — stacked Powerwalls",
+    photo: "/shop/pw-exp.png",
     featured: false,
   },
   {
@@ -70,7 +70,7 @@ export const CATALOG: Product[] = [
     desc: "Solar, Powerwall, and bidirectional charging as one integrated system. The full stack — scoped to your home.",
     price: "Custom quote",
     pricenote: "Package",
-    photo: "PHOTO — full home system",
+    photo: "/shop/resilience.png",
     featured: true,
   },
 ];

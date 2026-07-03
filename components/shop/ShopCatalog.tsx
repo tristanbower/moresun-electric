@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState, type CSSProperties } from "react";
 import { CATALOG, CATEGORIES, type Category } from "@/lib/catalog";
 
@@ -146,6 +147,13 @@ export default function ShopCatalog() {
                     overflow: "hidden",
                   }}
                 >
+                  <Image
+                    src={item.photo}
+                    alt={item.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    style={{ objectFit: "cover" }}
+                  />
                   <div
                     style={{
                       position: "absolute",
@@ -195,22 +203,6 @@ export default function ShopCatalog() {
                         ★ Featured
                       </span>
                     )}
-                  </div>
-                  <div
-                    style={{
-                      position: "relative",
-                      margin: 12,
-                      fontFamily: mono,
-                      fontSize: 11,
-                      letterSpacing: ".06em",
-                      color: "var(--text-mono)",
-                      background: "rgba(6,8,12,.6)",
-                      border: "1px solid var(--border-3)",
-                      padding: "6px 10px",
-                      borderRadius: 5,
-                    }}
-                  >
-                    {item.photo}
                   </div>
                 </div>
                 <div
