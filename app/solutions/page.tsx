@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -316,10 +317,15 @@ export default function SolutionsPage() {
                 background:
                   "repeating-linear-gradient(135deg,#141A23 0 13px,#10151D 13px 26px)",
                 border: "1px solid var(--border-3)",
-                display: "flex",
-                alignItems: "flex-end",
               }}
             >
+              <Image
+                src="/solutions/v2h-home.png"
+                alt="EV charging from a home wall charger at dusk, energy flowing between the car, house, and garage"
+                fill
+                sizes="(max-width: 1280px) 100vw, 600px"
+                style={{ objectFit: "cover" }}
+              />
               <div
                 style={{
                   position: "absolute",
@@ -328,22 +334,6 @@ export default function SolutionsPage() {
                     "radial-gradient(80% 70% at 70% 25%,rgba(255,154,14,.14),transparent 60%)",
                 }}
               />
-              <div
-                style={{
-                  position: "relative",
-                  margin: 18,
-                  fontFamily: mono,
-                  fontSize: 12,
-                  letterSpacing: ".08em",
-                  color: "var(--text-mono)",
-                  background: "rgba(6,8,12,.6)",
-                  border: "1px solid var(--border-3)",
-                  padding: "8px 12px",
-                  borderRadius: 5,
-                }}
-              >
-                PHOTO — EV powering a home at dusk, charger lit
-              </div>
             </div>
           </div>
         </Reveal>

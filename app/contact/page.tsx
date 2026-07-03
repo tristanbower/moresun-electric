@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -211,37 +212,19 @@ export default function ContactPage() {
               <div
                 style={{
                   position: "relative",
-                  height: 170,
+                  aspectRatio: "1 / 1",
                   background:
                     "repeating-linear-gradient(135deg,#141A23 0 12px,#10151D 12px 24px)",
-                  display: "flex",
-                  alignItems: "flex-end",
+                  overflow: "hidden",
                 }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "radial-gradient(70% 80% at 70% 30%,rgba(255,154,14,.1),transparent 60%)",
-                  }}
+                <Image
+                  src="/contact/service-area.png"
+                  alt="MoreSun Electric service area map — Greater Golden Horseshoe, plus east and north"
+                  fill
+                  sizes="(max-width: 720px) 100vw, 400px"
+                  style={{ objectFit: "cover" }}
                 />
-                <div
-                  style={{
-                    position: "relative",
-                    margin: 14,
-                    fontFamily: mono,
-                    fontSize: 11,
-                    letterSpacing: ".06em",
-                    color: "var(--text-mono)",
-                    background: "rgba(6,8,12,.6)",
-                    border: "1px solid var(--border-3)",
-                    padding: "6px 10px",
-                    borderRadius: 5,
-                  }}
-                >
-                  MAP — service-area coverage
-                </div>
               </div>
               <div style={{ padding: "22px 24px" }}>
                 <div style={detailLabel}>Service area</div>
