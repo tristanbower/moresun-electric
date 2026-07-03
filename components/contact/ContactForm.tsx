@@ -34,7 +34,10 @@ export default function ContactForm() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [sentName, setSentName] = useState("");
+  const [honey, setHoney] = useState("");
 
   // Clearing a field's error as the user edits it (mirrors set() in the spec).
   const clearError = (field: keyof Errors) =>
@@ -56,16 +59,58 @@ export default function ContactForm() {
     return e;
   };
 
-  const submit = () => {
+  const submit = async () => {
     const e = validate();
     if (Object.keys(e).length) {
       setErrors(e);
       return;
     }
-    // NOTE: the prototype only sets local state. Wire this to a real backend
-    // (form API / email service / CRM) before launch.
-    setSentName(name.trim().split(/\s+/)[0]);
-    setSubmitted(true);
+    if (honey) return; // honeypot — silently drop bot submissions
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setSubmitError(
+        "The form isn\u2019t configured yet. Please email service@moresun-electric.com."
+      );
+      return;
+    }
+
+    setSubmitError("");
+    setSending(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: "New consultation request \u2014 MoreSun Electric",
+          from_name: "MoreSun Electric website",
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSentName(name.trim().split(/\s+/)[0]);
+        setSubmitted(true);
+      } else {
+        setSubmitError(
+          data.message ||
+            "Something went wrong sending your message. Please try again, or email service@moresun-electric.com."
+        );
+      }
+    } catch {
+      setSubmitError(
+        "Couldn\u2019t reach the server. Check your connection and try again, or email service@moresun-electric.com."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   const reset = () => {
@@ -75,7 +120,10 @@ export default function ContactForm() {
     setMessage("");
     setErrors({});
     setSubmitted(false);
+    setSending(false);
+    setSubmitError("");
     setSentName("");
+    setHoney("");
   };
 
   return (
@@ -189,6 +237,24 @@ export default function ContactForm() {
             noValidate
             style={{ display: "flex", flexDirection: "column", gap: 22 }}
           >
+            {/* honeypot — hidden from users, catches bots */}
+            <input
+              type="text"
+              name="botcheck"
+              value={honey}
+              onChange={(e) => setHoney(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                width: 1,
+                height: 1,
+                opacity: 0,
+              }}
+            />
+
             {/* name */}
             <div>
               <label style={labelStyle} htmlFor="name">
@@ -276,17 +342,25 @@ export default function ContactForm() {
               {errors.message && <div style={errStyle}>{errors.message}</div>}
             </div>
 
+            {submitError && (
+              <div style={{ ...errStyle, marginTop: 0 }} role="alert">
+                {submitError}
+              </div>
+            )}
             <button
               type="submit"
               className="btn-primary"
+              disabled={sending}
               style={{
                 fontSize: 16.5,
                 padding: "18px 28px",
                 borderRadius: 6,
                 boxShadow: "0 10px 30px rgba(255,120,30,.3)",
+                opacity: sending ? 0.7 : 1,
+                cursor: sending ? "not-allowed" : "pointer",
               }}
             >
-              Send request →
+              {sending ? "Sending…" : "Send request →"}
             </button>
           </form>
         </div>
