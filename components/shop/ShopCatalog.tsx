@@ -138,12 +138,10 @@ export default function ShopCatalog() {
                 <div
                   style={{
                     position: "relative",
-                    height: 188,
+                    aspectRatio: "4 / 3",
                     background:
                       "repeating-linear-gradient(135deg,#141A23 0 12px,#10151D 12px 24px)",
                     borderBottom: "1px solid var(--border)",
-                    display: "flex",
-                    alignItems: "flex-end",
                     overflow: "hidden",
                   }}
                 >
