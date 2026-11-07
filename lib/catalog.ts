@@ -5,7 +5,8 @@ export type Product = {
   category: Exclude<Category, "All">;
   name: string;
   desc: string;
-  price: string;
+  /** Omit to hide the price; the card then shows only "Request a quote". */
+  price?: string;
   pricenote: string;
   photo: string;
   featured: boolean;
@@ -18,10 +19,7 @@ export const CATALOG: Product[] = [
     category: "EV Charging",
     name: "SWTCH Home Charger",
     desc: "Level 2 home EV charger from SWTCH, wall-mounted and installed by our licensed electricians.",
-    // PLACEHOLDER — carried over from the ChargePoint Home Flex entry it
-    // replaced. No SWTCH installed price has been confirmed; do not ship
-    // until Torts confirms the number.
-    price: "from $1,899",
+    // No price until Torts confirms the installed number (owner decision, Nov 7).
     pricenote: "Installed",
     photo: "/shop/swtch-home.png",
     featured: false,
