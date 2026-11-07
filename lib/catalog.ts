@@ -27,16 +27,6 @@ export const CATALOG: Product[] = [
     featured: false,
   },
   {
-    id: "cp-home",
-    category: "EV Charging",
-    name: "ChargePoint Home Plug-In",
-    desc: "Reliable 32A Level 2 charging for daily drivers. Simple, durable, and weather-rated for outdoor mounting.",
-    price: "from $1,499",
-    pricenote: "Installed",
-    photo: "/shop/cp-home.png",
-    featured: false,
-  },
-  {
     id: "v2h",
     category: "EV Charging",
     name: "Bidirectional V2H Charger",

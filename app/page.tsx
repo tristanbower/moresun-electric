@@ -280,6 +280,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* OUR WORK */}
+      <OurWork />
+
       {/* FROM THE SHOP */}
       <section
         style={{
@@ -449,9 +452,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* OUR WORK */}
-      <OurWork />
 
       {/* TESTIMONIALS */}
       <section
