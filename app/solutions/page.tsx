@@ -68,11 +68,14 @@ const B2B = [
   },
 ];
 
+const HOME_EV = {
+  title: "Home EV Charger Install",
+  body: "Professional Level 2 home charger installation by licensed electricians — and it includes a FREE SWTCH charger, so you get EV-ready hardware and expert install in one price.",
+  img: "/solutions/swtch-home-brick.jpg",
+  alt: "A SWTCH home EV charger mounted on a brick wall, hardwired through conduit, with its green status light on.",
+};
+
 const RESIDENTIAL = [
-  {
-    title: "Home EV Charger Install",
-    body: "Professional Level 2 home charger installation by licensed electricians — and it includes a FREE SWTCH charger, so you get EV-ready hardware and expert install in one price.",
-  },
   {
     title: "Solar",
     body: "Rooftop solar designed for your roof and your bill — generate your own power and feed the rest of the system.",
@@ -526,6 +529,70 @@ export default function SolutionsPage() {
             >
               The full clean-energy stack.
             </h2>
+          </Reveal>
+          <Reveal
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))",
+              background: "var(--card)",
+              border: "1px solid var(--border)",
+              borderRadius: 10,
+              overflow: "hidden",
+              marginBottom: 20,
+            }}
+          >
+            <Image
+              src={HOME_EV.img}
+              width={2000}
+              height={1240}
+              alt={HOME_EV.alt}
+              sizes="(max-width: 767px) 100vw, (max-width: 1280px) 50vw, 576px"
+              style={{
+                display: "block",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                padding: "clamp(28px,4vw,48px)",
+              }}
+            >
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 8,
+                  background: "var(--solar-dot)",
+                  marginBottom: 22,
+                }}
+              />
+              <h3
+                style={{
+                  fontWeight: 800,
+                  fontSize: "clamp(22px,2.4vw,30px)",
+                  letterSpacing: "-.02em",
+                  margin: "0 0 12px",
+                }}
+              >
+                {HOME_EV.title}
+              </h3>
+              <p
+                style={{
+                  color: "var(--text-dim)",
+                  fontSize: 16.5,
+                  lineHeight: 1.6,
+                  margin: 0,
+                  maxWidth: "46ch",
+                }}
+              >
+                {HOME_EV.body}
+              </p>
+            </div>
           </Reveal>
           <div
             style={{

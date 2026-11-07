@@ -14,13 +14,16 @@ export type Product = {
 // Mirrors CATALOG in Shop.dc.html's logic block.
 export const CATALOG: Product[] = [
   {
-    id: "cp-flex",
+    id: "swtch-home",
     category: "EV Charging",
-    name: "ChargePoint Home Flex Hardwired",
-    desc: "Level 2 home charger, up to 50A. Wi-Fi connected with scheduling and energy tracking in the app.",
+    name: "SWTCH Home Charger",
+    desc: "Level 2 home EV charger from SWTCH, wall-mounted and installed by our licensed electricians.",
+    // PLACEHOLDER — carried over from the ChargePoint Home Flex entry it
+    // replaced. No SWTCH installed price has been confirmed; do not ship
+    // until Torts confirms the number.
     price: "from $1,899",
     pricenote: "Installed",
-    photo: "/shop/cp-flex.png",
+    photo: "/shop/swtch-home.png",
     featured: false,
   },
   {

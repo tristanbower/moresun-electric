@@ -47,7 +47,7 @@ const STEPS = [
   },
 ];
 
-const SHOP_HIGHLIGHT_IDS = ["cp-flex", "pw3", "v2h"];
+const SHOP_HIGHLIGHT_IDS = ["swtch-home", "pw3", "v2h"];
 const SHOP_HIGHLIGHTS = SHOP_HIGHLIGHT_IDS.map((id) =>
   CATALOG.find((p) => p.id === id)
 ).filter((p): p is (typeof CATALOG)[number] => Boolean(p));

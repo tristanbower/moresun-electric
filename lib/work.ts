@@ -7,14 +7,28 @@ export type WorkImage = {
   quality: 75 | 85;
 };
 
+export type WorkStep = WorkImage & { label: string };
+
 export type WorkProject = {
   slug: string;
   title: string;
   location: string;
-  /** Owner-supplied wording (LinkedIn). Station count and scope are unverified. */
+  /**
+   * Owner-supplied wording (LinkedIn). Four Level 2 SWTCH chargers confirmed
+   * by the owner's project summary (Nov 7, 2026); the progress photos show
+   * the trench and concrete work.
+   */
   scope: string;
+  /**
+   * From the owner's project summary. The client is deliberately not named:
+   * naming it publicly is not yet approved.
+   */
+  role: string;
+  timeline: string;
   cover: WorkImage;
   gallery: WorkImage[];
+  /** Install sequence, trench to finished. No completion date published yet. */
+  progress: WorkStep[];
   poster: string;
   heroVideo: string;
 };
@@ -35,9 +49,25 @@ export const WAYNE_GRETZKY: WorkProject = {
   location: "Brantford, Ontario",
   scope:
     "Four SWTCH Level 2 charging stations, installed from trench to tie-in.",
+  role: "Subcontractor on a public tender",
+  timeline: "About a week and a half from receiving materials to energizing",
   cover: WG_02,
   gallery: [
     WG_02,
+    {
+      src: `${base}/images/wg-pedestal-wide.jpg`,
+      width: 1179,
+      height: 1768,
+      alt: "Finished SWTCH charging pedestal between two yellow bollards, with EV charging signs on the wall either side.",
+      quality: 75,
+    },
+    {
+      src: `${base}/images/wg-pedestal-top.jpg`,
+      width: 1179,
+      height: 1768,
+      alt: "Looking up a SWTCH charging pedestal: the charger head with its green light ring, two holstered connectors, and the SWTCH-branded top cap.",
+      quality: 85,
+    },
     {
       src: `${base}/images/wg-06-swtch-head-qr.jpg`,
       width: 1179,
@@ -51,6 +81,40 @@ export const WAYNE_GRETZKY: WorkProject = {
       height: 1765,
       alt: "A person holds a charging connector at a Rivian's charging port, with a MoreSun Electric logo overlay.",
       quality: 85,
+    },
+  ],
+  progress: [
+    {
+      label: "Trench",
+      src: `${base}/images/wg-progress-01-trench-rubble.jpg`,
+      width: 1179,
+      height: 1745,
+      alt: "Excavation along the base of the building wall behind construction fencing, with broken concrete piled beside it.",
+      quality: 75,
+    },
+    {
+      label: "Concrete",
+      src: `${base}/images/wg-progress-02-fresh-concrete.jpg`,
+      width: 1179,
+      height: 1572,
+      alt: "Freshly poured concrete pads at the base of the wall, with conduit running up to junction boxes.",
+      quality: 75,
+    },
+    {
+      label: "Pedestals",
+      src: `${base}/images/wg-progress-03-pedestals-dusk.jpg`,
+      width: 1179,
+      height: 1572,
+      alt: "Two charging pedestals set on the new pads between yellow bollards, construction fencing still up.",
+      quality: 75,
+    },
+    {
+      label: "Finished",
+      src: `${base}/images/wg-progress-07-finished-wide.jpg`,
+      width: 1179,
+      height: 1572,
+      alt: "Finished install: fencing gone, two charging pedestals and EV charging signs facing the parking bays.",
+      quality: 75,
     },
   ],
   poster: `${base}/posters/wg-poster-16x9.webp`,

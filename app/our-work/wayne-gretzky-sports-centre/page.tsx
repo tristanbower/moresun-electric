@@ -50,10 +50,14 @@ function fadeUp(delay: number): React.CSSProperties {
   return { opacity: 0, animation: `msFadeUp .85s var(--ease) ${delay}s both` };
 }
 
-// Gallery order wg-02 → wg-06 → wg-07, laid out as rows whose
-// items share a height so every photo keeps its full frame.
-const [g02, g06, g07] = project.gallery;
-const ROWS: WorkImage[][] = [[g02], [g06, g07]];
+// Gallery order wg-02 → finished pedestal → pedestal head → wg-06 → wg-07,
+// laid out as rows whose items share a height so every photo keeps its
+// full frame.
+const [g02, gWide, gTop, g06, g07] = project.gallery;
+const ROWS: WorkImage[][] = [
+  [g02, gWide],
+  [gTop, g06, g07],
+];
 
 // Gallery content width is capped at 1152px (1280px container minus gutters).
 function sizesFor(img: WorkImage, row: WorkImage[]) {
@@ -224,6 +228,80 @@ export default function WayneGretzkyPage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* INSTALL SEQUENCE */}
+      <section
+        style={{
+          position: "relative",
+          background: "var(--slate-900)",
+          padding: "clamp(60px,8vw,110px) 0 clamp(76px,11vw,150px)",
+          borderTop: "1px solid var(--hairline)",
+        }}
+      >
+        <div className="container">
+          <Reveal
+            style={{ maxWidth: 760, marginBottom: "clamp(32px,4vw,48px)" }}
+          >
+            <div style={eyebrowStyle}>
+              <span style={dot} />
+              The install
+            </div>
+            <h2
+              style={{
+                fontWeight: 800,
+                fontSize: "clamp(30px,4.2vw,56px)",
+                lineHeight: 1.04,
+                letterSpacing: "-.03em",
+                margin: "0 0 18px",
+              }}
+            >
+              Trench to tie-in.
+            </h2>
+            <p
+              style={{
+                fontSize: "clamp(16px,1.4vw,19px)",
+                lineHeight: 1.6,
+                color: "var(--text-muted)",
+                margin: "0 0 22px",
+              }}
+            >
+              Electrical permitting, concrete work, delivery and placement of
+              the equipment, then termination, commissioning and turn-on of all
+              four chargers.
+            </p>
+            <dl className="work-facts">
+              <div>
+                <dt>Role</dt>
+                <dd>{project.role}</dd>
+              </div>
+              <div>
+                <dt>Timeline</dt>
+                <dd>{project.timeline}</dd>
+              </div>
+            </dl>
+          </Reveal>
+          <ol className="work-steps">
+            {project.progress.map((step, i) => (
+              <Reveal as="li" key={step.src} delay={i * 0.08}>
+                <figure>
+                  <Image
+                    src={step.src}
+                    width={step.width}
+                    height={step.height}
+                    alt={step.alt}
+                    quality={step.quality}
+                    sizes="(max-width: 767px) 50vw, (max-width: 1280px) 25vw, 276px"
+                  />
+                  <figcaption>
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    {step.label}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </section>
 
