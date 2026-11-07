@@ -14,6 +14,7 @@ const LINKS = [
 export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -28,8 +29,21 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close the mobile menu whenever the route changes.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Lock background scroll while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
-    <nav className={`nav${scrolled ? " scrolled" : ""}`}>
+    <nav className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
       <Link href="/" className="nav-brand">
         <span
           className="sun-dot"
@@ -50,7 +64,26 @@ export default function Nav() {
           </span>
         </span>
       </Link>
-      <div className="nav-links">
+
+      <button
+        type="button"
+        className="nav-toggle"
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="nav-toggle-bar" />
+        <span className="nav-toggle-bar" />
+        <span className="nav-toggle-bar" />
+      </button>
+
+      <div
+        className={`nav-backdrop${open ? " open" : ""}`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+
+      <div className={`nav-links${open ? " open" : ""}`}>
         {LINKS.map((l) => {
           const active =
             l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
@@ -59,12 +92,17 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className={`nav-link${active ? " active" : ""}`}
+              onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
           );
         })}
-        <Link href="/contact" className="nav-cta">
+        <Link
+          href="/contact"
+          className="nav-cta"
+          onClick={() => setOpen(false)}
+        >
           Get a quote
         </Link>
       </div>

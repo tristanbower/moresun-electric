@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
+import { CATALOG } from "@/lib/catalog";
 
 const mono = "var(--font-mono), monospace";
 
@@ -44,11 +46,10 @@ const STEPS = [
   },
 ];
 
-const V2H_CHECKS = [
-  "Keep the lights on during outages",
-  "Shift usage off peak-rate hours",
-  "Pair with solar + Powerwall for full resilience",
-];
+const SHOP_HIGHLIGHT_IDS = ["cp-flex", "pw3", "v2h"];
+const SHOP_HIGHLIGHTS = SHOP_HIGHLIGHT_IDS.map((id) =>
+  CATALOG.find((p) => p.id === id)
+).filter((p): p is (typeof CATALOG)[number] => Boolean(p));
 
 const TESTIMONIALS = [
   {
@@ -278,175 +279,174 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* V2H FEATURE PANEL */}
+      {/* FROM THE SHOP */}
       <section
         style={{
           position: "relative",
           background: "var(--slate-900)",
-          padding: "0 clamp(16px,4vw,48px) clamp(76px,11vw,150px)",
+          padding: "0 0 clamp(76px,11vw,150px)",
         }}
       >
-        <Reveal
-          style={{
-            maxWidth: 1280,
-            margin: "0 auto",
-            position: "relative",
-            borderRadius: 14,
-            overflow: "hidden",
-            background: "var(--card-2)",
-            border: "1px solid #20283340",
-          }}
-        >
-          <div
+        <div className="container">
+          <Reveal
             style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(90% 120% at 12% 0%,rgba(255,90,20,.22),transparent 55%),radial-gradient(80% 120% at 100% 100%,rgba(255,210,10,.12),transparent 55%)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              right: 0,
-              height: 3,
-              background: "var(--solar)",
-            }}
-          />
-          <div
-            style={{
-              position: "relative",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-              gap: "clamp(32px,4vw,56px)",
-              alignItems: "center",
-              padding: "clamp(36px,5vw,72px)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: 20,
+              marginBottom: "clamp(40px,5vw,64px)",
             }}
           >
-            <div>
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 9,
-                  fontFamily: mono,
-                  fontSize: 12,
-                  letterSpacing: ".18em",
-                  textTransform: "uppercase",
-                  color: "#0A0D12",
-                  background: "linear-gradient(100deg,#FF9A0E,#FFD20A)",
-                  padding: "7px 13px",
-                  borderRadius: 999,
-                  fontWeight: 700,
-                  marginBottom: 24,
-                }}
-              >
-                ★ Headline innovation
+            <div style={{ maxWidth: 640 }}>
+              <div style={eyebrowStyle}>
+                <span style={dot} />
+                From the shop
               </div>
               <h2
                 style={{
                   fontWeight: 800,
-                  fontSize: "clamp(34px,4.8vw,68px)",
-                  lineHeight: 0.98,
-                  letterSpacing: "-.035em",
-                  margin: "0 0 22px",
+                  fontSize: "clamp(32px,4.6vw,62px)",
+                  lineHeight: 1.02,
+                  letterSpacing: "-.03em",
+                  margin: 0,
                 }}
               >
-                Bidirectional charging is here.
+                Gear we install, priced up front.
               </h2>
-              <p
-                style={{
-                  fontSize: "clamp(16px,1.5vw,20px)",
-                  lineHeight: 1.6,
-                  color: "var(--text-muted)",
-                  margin: "0 0 26px",
-                  maxWidth: "52ch",
-                }}
-              >
-                Plug in your EV and use its battery to power your home — through
-                outages, or during peak-rate hours when grid electricity costs
-                the most. Vehicle-to-home charging turns the car in your
-                driveway into a backup power source. We&apos;re one of the few
-                installers in the area offering it.
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
-                  marginBottom: 32,
-                }}
-              >
-                {V2H_CHECKS.map((c) => (
+            </div>
+            <Link
+              href="/shop"
+              className="btn-outline"
+              style={{ fontSize: 15, padding: "14px 24px" }}
+            >
+              View all products →
+            </Link>
+          </Reveal>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(290px,1fr))",
+              gap: 20,
+            }}
+          >
+            {SHOP_HIGHLIGHTS.map((item, i) => (
+              <Reveal key={item.id} delay={i * 0.1}>
+                <Link
+                  href="/shop"
+                  className="product-card"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                >
                   <div
-                    key={c}
-                    style={{ display: "flex", alignItems: "flex-start", gap: 12 }}
+                    style={{
+                      position: "relative",
+                      aspectRatio: "4 / 3",
+                      background:
+                        "repeating-linear-gradient(135deg,#141A23 0 12px,#10151D 12px 24px)",
+                      borderBottom: "1px solid var(--border)",
+                      overflow: "hidden",
+                    }}
                   >
-                    <span
+                    <Image
+                      src={item.photo}
+                      alt={item.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                      style={{ objectFit: "cover" }}
+                    />
+                    <div
                       style={{
-                        width: 18,
-                        height: 18,
-                        borderRadius: 4,
-                        background: "var(--solar-dot)",
-                        flexShrink: 0,
-                        marginTop: 2,
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "radial-gradient(70% 80% at 75% 20%,rgba(255,154,14,.12),transparent 60%)",
                       }}
                     />
-                    <span style={{ color: "#D6DCE3", fontSize: 16 }}>{c}</span>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 12,
+                        left: 12,
+                        display: "flex",
+                        gap: 7,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: mono,
+                          fontSize: 10.5,
+                          letterSpacing: ".1em",
+                          textTransform: "uppercase",
+                          color: "var(--text-muted)",
+                          background: "rgba(6,8,12,.7)",
+                          border: "1px solid var(--border-3)",
+                          padding: "5px 9px",
+                          borderRadius: 999,
+                        }}
+                      >
+                        {item.category}
+                      </span>
+                      {item.featured && (
+                        <span
+                          style={{
+                            fontFamily: mono,
+                            fontSize: 10.5,
+                            letterSpacing: ".08em",
+                            textTransform: "uppercase",
+                            color: "#0A0D12",
+                            background: "linear-gradient(100deg,#FF9A0E,#FFD20A)",
+                            padding: "5px 9px",
+                            borderRadius: 999,
+                            fontWeight: 700,
+                          }}
+                        >
+                          ★ Featured
+                        </span>
+                      )}
+                    </div>
                   </div>
-                ))}
-              </div>
-              <Link
-                href="/solutions"
-                className="btn-primary"
-                style={{ fontSize: 16, padding: "16px 28px", boxShadow: "0 10px 30px rgba(255,120,30,.3)" }}
-              >
-                Explore V2H →
-              </Link>
-            </div>
-            <div
-              style={{
-                position: "relative",
-                borderRadius: 10,
-                overflow: "hidden",
-                minHeight: "clamp(280px,34vw,440px)",
-                background:
-                  "repeating-linear-gradient(135deg,#141A23 0 13px,#10151D 13px 26px)",
-                border: "1px solid var(--border-3)",
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "flex-start",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "radial-gradient(80% 70% at 70% 30%,rgba(255,154,14,.12),transparent 60%)",
-                }}
-              />
-              <div
-                style={{
-                  position: "relative",
-                  margin: 18,
-                  fontFamily: mono,
-                  fontSize: 12,
-                  letterSpacing: ".08em",
-                  color: "var(--text-mono)",
-                  background: "rgba(6,8,12,.6)",
-                  border: "1px solid var(--border-3)",
-                  padding: "8px 12px",
-                  borderRadius: 5,
-                }}
-              >
-                PHOTO — EV plugged into home, dusk install shot
-              </div>
-            </div>
+                  <div
+                    style={{
+                      padding: 24,
+                      display: "flex",
+                      flexDirection: "column",
+                      flex: 1,
+                    }}
+                  >
+                    <h3
+                      style={{
+                        fontWeight: 800,
+                        fontSize: 20,
+                        letterSpacing: "-.02em",
+                        margin: "0 0 9px",
+                        lineHeight: 1.15,
+                      }}
+                    >
+                      {item.name}
+                    </h3>
+                    <p
+                      style={{
+                        color: "var(--text-dim)",
+                        fontSize: 14.5,
+                        lineHeight: 1.55,
+                        margin: 0,
+                        flex: 1,
+                      }}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
+        </div>
       </section>
 
       {/* TESTIMONIALS */}

@@ -41,7 +41,8 @@ const V2H_STATS = [
 
 const B2B = [
   {
-    photo: "PHOTO — EV on dealership lot",
+    img: "/solutions/dealership.png",
+    alt: "EV on a dealership lot ready for delivery with a home charger install bundled into the sale",
     label: "Dealership Partnerships",
     title: "Charger install, built into the sale.",
     body: "Bundle a home charger install into every EV you sell. Your customer drives off knowing their garage is ready before the car even arrives — we handle the site visit, permit, and install on your timeline.",
@@ -53,7 +54,8 @@ const B2B = [
     cta: "Become a partner →",
   },
   {
-    photo: "PHOTO — new-build garage with charger",
+    img: "/solutions/home-developer.png",
+    alt: "New-build home garage with an EV charger roughed in during construction",
     label: "Home Developer Program",
     title: "An EV charger in every home you build.",
     body: "Include a charger with the sale of the home. We rough-in during construction and commission at handover, so buyers move into an EV-ready house — a feature that sells, with none of the retrofit headache later.",
@@ -68,8 +70,8 @@ const B2B = [
 
 const RESIDENTIAL = [
   {
-    title: "EV Charging",
-    body: "Level 2 home chargers sized to your panel and your commute. Hardwired, weather-rated, and app-connected.",
+    title: "Home EV Charger Install",
+    body: "Professional Level 2 home charger installation by licensed electricians — and it includes a FREE SWTCH charger, so you get EV-ready hardware and expert install in one price.",
   },
   {
     title: "Solar",
@@ -82,10 +84,6 @@ const RESIDENTIAL = [
   {
     title: "Home Battery Backup",
     body: "Tesla Powerwall whole-home backup that keeps the lights on through outages and stores your solar and off-peak energy for exactly when you need it.",
-  },
-  {
-    title: "Home EV Charger Install",
-    body: "Professional Level 2 home charger installation by licensed electricians — and it includes a FREE SWTCH charger, so you get EV-ready hardware and expert install in one price.",
   },
 ];
 
@@ -404,15 +402,20 @@ export default function SolutionsPage() {
                     position: "relative",
                     borderRadius: 9,
                     overflow: "hidden",
-                    height: 170,
+                    height: 200,
                     marginBottom: 26,
                     background:
                       "repeating-linear-gradient(135deg,#141A23 0 12px,#10151D 12px 24px)",
                     border: "1px solid var(--border-3)",
-                    display: "flex",
-                    alignItems: "flex-end",
                   }}
                 >
+                  <Image
+                    src={c.img}
+                    alt={c.alt}
+                    fill
+                    sizes="(max-width: 760px) 100vw, 620px"
+                    style={{ objectFit: "cover" }}
+                  />
                   <div
                     style={{
                       position: "absolute",
@@ -421,22 +424,6 @@ export default function SolutionsPage() {
                         "radial-gradient(70% 80% at 80% 20%,rgba(255,154,14,.1),transparent 60%)",
                     }}
                   />
-                  <div
-                    style={{
-                      position: "relative",
-                      margin: 14,
-                      fontFamily: mono,
-                      fontSize: 11,
-                      letterSpacing: ".06em",
-                      color: "var(--text-mono)",
-                      background: "rgba(6,8,12,.6)",
-                      border: "1px solid var(--border-3)",
-                      padding: "6px 10px",
-                      borderRadius: 5,
-                    }}
-                  >
-                    {c.photo}
-                  </div>
                 </div>
                 <div
                   style={{

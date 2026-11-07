@@ -149,6 +149,7 @@ export default function ShopCatalog() {
                     src={item.photo}
                     alt={item.name}
                     fill
+                    quality={90}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                     style={{ objectFit: "cover" }}
                   />

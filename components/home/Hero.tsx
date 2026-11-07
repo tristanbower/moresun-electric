@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, type CSSProperties } from "react";
 
@@ -51,102 +52,65 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* animated background / video placeholder layer */}
+      {/* full-bleed background image (overscanned for parallax) */}
       <div
         ref={bgRef}
-        style={{ position: "absolute", inset: 0, zIndex: 0, willChange: "transform" }}
-      >
-        <div style={{ position: "absolute", inset: 0, background: "var(--slate-900)" }} />
-        {/* Replace this layer with a muted autoplay <video> (poster + playsInline);
-            keep the dark overlays below on top for legibility. */}
-        <div
-          className="drift"
-          style={{
-            position: "absolute",
-            width: "65vw",
-            height: "65vw",
-            left: "-12vw",
-            top: "-14vw",
-            borderRadius: "50%",
-            background: "radial-gradient(circle,rgba(255,77,28,.5),transparent 62%)",
-            filter: "blur(30px)",
-            animation: "msDrift 18s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="drift-2"
-          style={{
-            position: "absolute",
-            width: "55vw",
-            height: "55vw",
-            right: "-10vw",
-            top: "8vh",
-            borderRadius: "50%",
-            background: "radial-gradient(circle,rgba(255,210,10,.32),transparent 64%)",
-            filter: "blur(36px)",
-            animation: "msDrift2 22s ease-in-out infinite",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 2px,transparent 2px 9px)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top,rgba(10,13,18,.96) 4%,rgba(10,13,18,.55) 42%,rgba(10,13,18,.42) 70%,rgba(10,13,18,.7) 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(120% 90% at 70% 20%,transparent 40%,rgba(10,13,18,.7) 100%)",
-          }}
-        />
-      </div>
-
-      {/* video placeholder chip */}
-      <div
         style={{
           position: "absolute",
-          right: "clamp(18px,4vw,46px)",
-          top: "calc(50% + 6px)",
-          zIndex: 2,
-          display: "flex",
-          alignItems: "center",
-          gap: 9,
-          fontFamily: mono,
-          fontSize: 11,
-          letterSpacing: ".16em",
-          textTransform: "uppercase",
-          color: "var(--text-mono)",
-          border: "1px solid var(--border-3)",
-          padding: "7px 12px",
-          borderRadius: 4,
-          background: "rgba(10,13,18,.4)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(4px)",
+          top: "-20%",
+          left: 0,
+          right: 0,
+          height: "140%",
+          zIndex: 0,
+          willChange: "transform",
         }}
       >
-        <span
+        <div style={{ position: "absolute", inset: 0, background: "var(--slate-900)" }} />
+        <Image
+          src="/hero.png"
+          alt="An EV charging at a modern home at dusk — energy flowing from the car to a wall charger, a garage battery, and rooftop solar"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "58% 50%" }}
+        />
+        {/* subtle warm brand glow */}
+        <div
           style={{
-            width: 0,
-            height: 0,
-            borderLeft: "8px solid var(--accent)",
-            borderTop: "5px solid transparent",
-            borderBottom: "5px solid transparent",
-            display: "block",
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(58% 48% at 78% 36%,rgba(255,120,30,.14),transparent 60%)",
+            mixBlendMode: "screen",
           }}
         />
-        Full-screen background video — placeholder
+        {/* fine texture */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "repeating-linear-gradient(135deg,rgba(255,255,255,.016) 0 2px,transparent 2px 9px)",
+          }}
+        />
+        {/* bottom-up legibility scrim */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to top,rgba(10,13,18,.95) 2%,rgba(10,13,18,.6) 32%,rgba(10,13,18,.14) 60%,rgba(10,13,18,.4) 100%)",
+          }}
+        />
+        {/* left-to-right legibility scrim */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to right,rgba(10,13,18,.82) 0%,rgba(10,13,18,.42) 34%,transparent 64%)",
+          }}
+        />
       </div>
 
       <div ref={contentRef} style={{ position: "relative", zIndex: 1, width: "100%" }}>
