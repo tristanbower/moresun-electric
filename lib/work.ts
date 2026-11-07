@@ -5,32 +5,31 @@ export type WorkImage = {
   alt: string;
   /** next/image quality: 75 for ordinary photos, 85 for fine labels / logo overlays */
   quality: 75 | 85;
+  /** Optional caption, e.g. "Before" / "After". */
+  label?: string;
 };
 
 export type WorkStep = WorkImage & { label: string };
 
+/**
+ * Every field without a verified, owner-supplied value is optional and left
+ * out — never filled with a guess.
+ */
 export type WorkProject = {
   slug: string;
   title: string;
-  location: string;
-  /**
-   * Owner-supplied wording (LinkedIn). Four Level 2 SWTCH chargers confirmed
-   * by the owner's project summary (Nov 7, 2026); the progress photos show
-   * the trench and concrete work.
-   */
+  location?: string;
+  /** Owner-supplied wording (LinkedIn / project summary). */
   scope: string;
-  /**
-   * From the owner's project summary. The client is deliberately not named:
-   * naming it publicly is not yet approved.
-   */
-  role: string;
-  timeline: string;
+  /** The client is never named: naming clients publicly is not approved. */
+  role?: string;
+  timeline?: string;
   cover: WorkImage;
   gallery: WorkImage[];
-  /** Install sequence, trench to finished. No completion date published yet. */
-  progress: WorkStep[];
-  poster: string;
-  heroVideo: string;
+  /** Install sequence. No completion dates published. */
+  progress?: WorkStep[];
+  poster?: string;
+  heroVideo?: string;
 };
 
 const base = "/work/wayne-gretzky-sports-centre";
@@ -43,7 +42,13 @@ const WG_02: WorkImage = {
   quality: 75,
 };
 
-export const WAYNE_GRETZKY: WorkProject = {
+/**
+ * Scope: owner-supplied wording (LinkedIn); four Level 2 SWTCH chargers
+ * confirmed by the owner's project summary (Nov 7, 2026). Role: from that
+ * summary. Progress runs trench to finished; no completion date published.
+ * `satisfies` keeps the fields set here non-optional for the Gretzky page.
+ */
+export const WAYNE_GRETZKY = {
   slug: "wayne-gretzky-sports-centre",
   title: "Wayne Gretzky Sports Centre",
   location: "Brantford, Ontario",
@@ -119,4 +124,51 @@ export const WAYNE_GRETZKY: WorkProject = {
   ],
   poster: `${base}/posters/wg-poster-16x9.webp`,
   heroVideo: `${base}/video/wg-hero-720.mp4`,
+} satisfies WorkProject;
+
+const svcBase = "/work/residential-200a-service-upgrade";
+
+const SVC_AFTER: WorkImage = {
+  label: "After",
+  src: `${svcBase}/images/svc200a-after-200a-2swtch.jpg`,
+  width: 1179,
+  height: 1571,
+  alt: "After: the new 200 A meter base centred on a grey brick wall, with a black SWTCH home charger on each side and their charging cables coiled below.",
+  quality: 85,
 };
+
+/**
+ * Owner-supplied (Torts, Nov 7, 2026; LinkedIn, Nov 6, 2026): "basically just
+ * a service upgrade from 100 A to 200 A" plus two SWTCH home chargers, for a
+ * customer with two EVs on the way. No location, client, date, price or
+ * timeline has been supplied, so none is set.
+ */
+export const RESIDENTIAL_200A = {
+  slug: "residential-200a-service-upgrade",
+  title: "Residential 200A Service Upgrade + 2 SWTCH Chargers",
+  scope:
+    "A service upgrade from 100 A to 200 A, including two SWTCH home chargers.",
+  cover: SVC_AFTER,
+  gallery: [
+    SVC_AFTER,
+    {
+      label: "Before",
+      src: `${svcBase}/images/svc200a-before-100a.jpg`,
+      width: 1178,
+      height: 1562,
+      alt: "Before: the old 100 A meter on the same grey brick wall, a single conduit running up to the eave, no chargers.",
+      quality: 85,
+    },
+    {
+      label: "Service mast",
+      src: `${svcBase}/images/svc200a-masthead.jpg`,
+      width: 1179,
+      height: 1561,
+      alt: "The new overhead service mast and weatherhead on the roof, with the service cables looping into it above the driveway.",
+      quality: 75,
+    },
+  ],
+} satisfies WorkProject;
+
+/** Home-page order: Gretzky first. */
+export const WORK_PROJECTS: WorkProject[] = [WAYNE_GRETZKY, RESIDENTIAL_200A];
