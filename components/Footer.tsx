@@ -103,6 +103,9 @@ export default function Footer() {
           <div>
             <div style={colHead}>Company</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+              <Link href="/#our-work" className="foot-link">
+                Our Work
+              </Link>
               <Link href="/shop" className="foot-link">
                 Shop
               </Link>

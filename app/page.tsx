@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
+import OurWork from "@/components/home/OurWork";
 import { CATALOG } from "@/lib/catalog";
 
 const mono = "var(--font-mono), monospace";
@@ -448,6 +449,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* OUR WORK */}
+      <OurWork />
 
       {/* TESTIMONIALS */}
       <section

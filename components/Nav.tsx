@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const LINKS = [
   { href: "/", label: "Home" },
+  { href: "/#our-work", label: "Our Work", match: "/our-work" },
   { href: "/solutions", label: "Solutions" },
   { href: "/shop", label: "Shop" },
   { href: "/contact", label: "Contact" },
@@ -86,7 +87,9 @@ export default function Nav() {
       <div className={`nav-links${open ? " open" : ""}`}>
         {LINKS.map((l) => {
           const active =
-            l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            l.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(l.match ?? l.href);
           return (
             <Link
               key={l.href}
