@@ -50,10 +50,10 @@ function fadeUp(delay: number): React.CSSProperties {
   return { opacity: 0, animation: `msFadeUp .85s var(--ease) ${delay}s both` };
 }
 
-// Gallery order wg-02 → wg-03 → wg-04 → wg-06 → wg-07, laid out as rows whose
+// Gallery order wg-02 → wg-06 → wg-07, laid out as rows whose
 // items share a height so every photo keeps its full frame.
-const [g02, g03, g04, g06, g07] = project.gallery;
-const ROWS: WorkImage[][] = [[g02], [g03, g04], [g06, g07]];
+const [g02, g06, g07] = project.gallery;
+const ROWS: WorkImage[][] = [[g02], [g06, g07]];
 
 // Gallery content width is capped at 1152px (1280px container minus gutters).
 function sizesFor(img: WorkImage, row: WorkImage[]) {
@@ -161,73 +161,6 @@ export default function WayneGretzkyPage() {
               {project.scope}
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* PROJECT VIDEO */}
-      <section
-        style={{
-          position: "relative",
-          background: "var(--slate-900)",
-          padding: "clamp(64px,9vw,120px) 0",
-          borderTop: "1px solid var(--hairline)",
-        }}
-      >
-        <div className="container">
-          <Reveal
-            style={{ maxWidth: 760, marginBottom: "clamp(32px,4vw,48px)" }}
-          >
-            <div style={eyebrowStyle}>
-              <span style={dot} />
-              Project video
-            </div>
-            <h2
-              style={{
-                fontWeight: 800,
-                fontSize: "clamp(30px,4.2vw,56px)",
-                lineHeight: 1.04,
-                letterSpacing: "-.03em",
-                margin: "0 0 18px",
-              }}
-            >
-              From the air.
-            </h2>
-            <p
-              id="project-video-description"
-              style={{
-                fontSize: "clamp(16px,1.45vw,19px)",
-                lineHeight: 1.6,
-                color: "var(--text-muted)",
-                margin: 0,
-              }}
-            >
-              {project.videoDescription}
-            </p>
-          </Reveal>
-          <Reveal
-            delay={0.1}
-            style={{
-              borderRadius: 12,
-              overflow: "hidden",
-              border: "1px solid var(--border)",
-              background: "var(--slate-950)",
-              aspectRatio: "16 / 9",
-            }}
-          >
-            <video
-              controls
-              playsInline
-              preload="metadata"
-              poster={project.poster}
-              aria-label={`Drone video of the ${project.title} EV charging installation in ${project.location}, silent, 17 seconds`}
-              aria-describedby="project-video-description"
-              style={{ display: "block", width: "100%", height: "100%" }}
-            >
-              <source src={project.projectVideo} type="video/mp4" />
-              Your browser can&apos;t play this video.{" "}
-              <a href={project.projectVideo}>Download the MP4</a>.
-            </video>
-          </Reveal>
         </div>
       </section>
 
