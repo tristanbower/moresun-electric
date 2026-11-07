@@ -133,7 +133,7 @@ const SVC_AFTER: WorkImage = {
   src: `${svcBase}/images/svc200a-after-200a-2swtch.jpg`,
   width: 1179,
   height: 1571,
-  alt: "After: the new 200 A meter base centred on a grey brick wall, with a black SWTCH home charger on each side and their charging cables coiled below.",
+  alt: "After: the new 200A meter base centred on a grey brick wall, with a black SWTCH home charger on each side and their charging cables coiled below.",
   quality: 85,
 };
 
@@ -147,7 +147,7 @@ export const RESIDENTIAL_200A = {
   slug: "residential-200a-service-upgrade",
   title: "Residential 200A Service Upgrade + 2 SWTCH Chargers",
   scope:
-    "A service upgrade from 100 A to 200 A, including two SWTCH home chargers.",
+    "A service upgrade from 100A to 200A, including two SWTCH home chargers.",
   cover: SVC_AFTER,
   gallery: [
     SVC_AFTER,
@@ -156,7 +156,7 @@ export const RESIDENTIAL_200A = {
       src: `${svcBase}/images/svc200a-before-100a.jpg`,
       width: 1178,
       height: 1562,
-      alt: "Before: the old 100 A meter on the same grey brick wall, a single conduit running up to the eave, no chargers.",
+      alt: "Before: the old 100A meter on the same grey brick wall, a single conduit running up to the eave, no chargers.",
       quality: 85,
     },
     {
