@@ -84,7 +84,8 @@ export default function Residential200aPage() {
       <PageHero
         eyebrow="Our Work · Service upgrade"
         titleBefore="Residential 200A Service Upgrade"
-        titleAccent="+ 2 SWTCH Chargers"
+        // Non-breaking spaces keep "+ 2 SWTCH" together on one line.
+        titleAccent={"+\u00a02\u00a0SWTCH Chargers"}
         titleMaxWidth="18ch"
         paddingBottom="clamp(48px,7vw,88px)"
         blobs={[
