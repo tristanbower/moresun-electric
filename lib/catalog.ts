@@ -5,7 +5,8 @@ export type Product = {
   category: Exclude<Category, "All">;
   name: string;
   desc: string;
-  price: string;
+  /** Omit to hide the price; the card then shows only "Request a quote". */
+  price?: string;
   pricenote: string;
   photo: string;
   featured: boolean;
@@ -14,23 +15,13 @@ export type Product = {
 // Mirrors CATALOG in Shop.dc.html's logic block.
 export const CATALOG: Product[] = [
   {
-    id: "cp-flex",
+    id: "swtch-home",
     category: "EV Charging",
-    name: "ChargePoint Home Flex Hardwired",
-    desc: "Level 2 home charger, up to 50A. Wi-Fi connected with scheduling and energy tracking in the app.",
-    price: "from $1,899",
+    name: "SWTCH Home Charger",
+    desc: "Level 2 home EV charger from SWTCH, wall-mounted and installed by our licensed electricians.",
+    // No price until Torts confirms the installed number (owner decision, Nov 7).
     pricenote: "Installed",
-    photo: "/shop/cp-flex.png",
-    featured: false,
-  },
-  {
-    id: "cp-home",
-    category: "EV Charging",
-    name: "ChargePoint Home Plug-In",
-    desc: "Reliable 32A Level 2 charging for daily drivers. Simple, durable, and weather-rated for outdoor mounting.",
-    price: "from $1,499",
-    pricenote: "Installed",
-    photo: "/shop/cp-home.png",
+    photo: "/shop/swtch-home.png",
     featured: false,
   },
   {

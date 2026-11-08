@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { WAYNE_GRETZKY as project } from "@/lib/work";
+import { WORK_PROJECTS } from "@/lib/work";
 
 const mono = "var(--font-mono), monospace";
 
@@ -64,69 +64,83 @@ export default function OurWork() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <Link href={`/our-work/${project.slug}`} className="work-card">
-            <div style={{ position: "relative", background: "var(--card-2)" }}>
-              <Image
-                src={project.cover.src}
-                width={project.cover.width}
-                height={project.cover.height}
-                alt={project.cover.alt}
-                quality={project.cover.quality}
-                sizes="(max-width: 760px) 100vw, 640px"
-                style={{ display: "block", width: "100%", height: "auto" }}
-              />
-            </div>
-            <div
-              style={{
-                padding: "clamp(26px,3.4vw,44px)",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: mono,
-                  fontSize: 12,
-                  letterSpacing: ".18em",
-                  textTransform: "uppercase",
-                  color: "var(--accent)",
-                  marginBottom: 16,
-                }}
-              >
-                {project.location}
-              </div>
-              <h3
-                style={{
-                  fontWeight: 800,
-                  fontSize: "clamp(26px,2.6vw,36px)",
-                  lineHeight: 1.08,
-                  letterSpacing: "-.02em",
-                  margin: "0 0 14px",
-                }}
-              >
-                {project.title}
-              </h3>
-              <p
-                style={{
-                  color: "var(--text-dim)",
-                  fontSize: 17,
-                  lineHeight: 1.6,
-                  margin: "0 0 28px",
-                }}
-              >
-                {project.scope}
-              </p>
-              <span
-                className="work-card-cta"
-                style={{ fontWeight: 700, fontSize: 16 }}
-              >
-                View the project →
-              </span>
-            </div>
-          </Link>
-        </Reveal>
+        <div style={{ display: "grid", gap: "clamp(20px,2.4vw,28px)" }}>
+          {WORK_PROJECTS.map((project, i) => (
+            <Reveal key={project.slug} delay={0.1 + i * 0.1}>
+              <Link href={`/our-work/${project.slug}`} className="work-card">
+                {/* 3:2 frame (the Gretzky cover's own ratio) so portrait
+                    covers don't stretch the card; the full photos are on
+                    the project page. */}
+                <div
+                  style={{
+                    position: "relative",
+                    aspectRatio: "3 / 2",
+                    background: "var(--card-2)",
+                  }}
+                >
+                  <Image
+                    src={project.cover.src}
+                    alt={project.cover.alt}
+                    quality={project.cover.quality}
+                    fill
+                    sizes="(max-width: 760px) 100vw, 640px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div
+                  style={{
+                    padding: "clamp(26px,3.4vw,44px)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  {project.location && (
+                    <div
+                      style={{
+                        fontFamily: mono,
+                        fontSize: 12,
+                        letterSpacing: ".18em",
+                        textTransform: "uppercase",
+                        color: "var(--accent)",
+                        marginBottom: 16,
+                      }}
+                    >
+                      {project.location}
+                    </div>
+                  )}
+                  <h3
+                    style={{
+                      fontWeight: 800,
+                      fontSize: "clamp(26px,2.6vw,36px)",
+                      lineHeight: 1.08,
+                      letterSpacing: "-.02em",
+                      margin: "0 0 14px",
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "var(--text-dim)",
+                      fontSize: 17,
+                      lineHeight: 1.6,
+                      margin: "0 0 28px",
+                    }}
+                  >
+                    {project.scope}
+                  </p>
+                  <span
+                    className="work-card-cta"
+                    style={{ fontWeight: 700, fontSize: 16 }}
+                  >
+                    View the project →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

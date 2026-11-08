@@ -234,37 +234,39 @@ export default function ShopCatalog() {
                   >
                     {item.desc}
                   </p>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "baseline",
-                      gap: 8,
-                      marginBottom: 18,
-                    }}
-                  >
-                    <span
+                  {item.price && (
+                    <div
                       style={{
-                        fontFamily: mono,
-                        fontSize: 11,
-                        letterSpacing: ".1em",
-                        textTransform: "uppercase",
-                        color: "var(--text-mono)",
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: 8,
+                        marginBottom: 18,
                       }}
                     >
-                      {item.pricenote}
-                    </span>
-                    <span
-                      style={{
-                        fontWeight: 800,
-                        fontSize: 23,
-                        letterSpacing: "-.02em",
-                        color: "var(--text)",
-                        marginLeft: "auto",
-                      }}
-                    >
-                      {item.price}
-                    </span>
-                  </div>
+                      <span
+                        style={{
+                          fontFamily: mono,
+                          fontSize: 11,
+                          letterSpacing: ".1em",
+                          textTransform: "uppercase",
+                          color: "var(--text-mono)",
+                        }}
+                      >
+                        {item.pricenote}
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 800,
+                          fontSize: 23,
+                          letterSpacing: "-.02em",
+                          color: "var(--text)",
+                          marginLeft: "auto",
+                        }}
+                      >
+                        {item.price}
+                      </span>
+                    </div>
+                  )}
                   <button
                     type="button"
                     onClick={() => toggleQuote(item.id)}

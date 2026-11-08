@@ -321,6 +321,53 @@ body {
   .work-gallery-row > figure { flex: none !important; }
 }
 
+.work-facts { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 0; }
+.work-facts dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.work-facts dd { margin: 0; font-size: 16px; color: var(--text); }
+.work-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.work-steps figure { margin: 0; }
+.work-steps img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card-2);
+}
+.work-steps figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.work-steps figcaption span {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: .14em;
+  color: var(--accent);
+}
+@media (max-width: 767px) {
+  .work-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+}
+
 /* ---- Looping background video pause control ---- */
 .video-toggle {
   display: inline-flex;
