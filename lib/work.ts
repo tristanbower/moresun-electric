@@ -128,6 +128,15 @@ export const WAYNE_GRETZKY = {
 
 const svcBase = "/work/residential-200a-service-upgrade";
 
+const SVC_BEFORE: WorkImage = {
+  label: "Before",
+  src: `${svcBase}/images/svc200a-before-100a.jpg`,
+  width: 1178,
+  height: 1562,
+  alt: "Before: the old 100A meter on the same grey brick wall, a single conduit running up to the eave, no chargers.",
+  quality: 85,
+};
+
 const SVC_AFTER: WorkImage = {
   label: "After",
   src: `${svcBase}/images/svc200a-after-200a-2swtch.jpg`,
@@ -148,17 +157,10 @@ export const RESIDENTIAL_200A = {
   title: "Residential 200A Service Upgrade + 2 SWTCH Chargers",
   scope:
     "A service upgrade from 100A to 200A, including two SWTCH home chargers.",
-  cover: SVC_AFTER,
+  cover: SVC_BEFORE,
   gallery: [
+    SVC_BEFORE,
     SVC_AFTER,
-    {
-      label: "Before",
-      src: `${svcBase}/images/svc200a-before-100a.jpg`,
-      width: 1178,
-      height: 1562,
-      alt: "Before: the old 100A meter on the same grey brick wall, a single conduit running up to the eave, no chargers.",
-      quality: 85,
-    },
     {
       label: "Service mast",
       src: `${svcBase}/images/svc200a-masthead.jpg`,
