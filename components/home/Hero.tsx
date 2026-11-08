@@ -1,10 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, type CSSProperties } from "react";
+import LoopVideo from "@/components/work/LoopVideo";
 
 const mono = "var(--font-mono), monospace";
+
+// Same hero video + poster as the Wayne Gretzky project page (owner request, Nov 7, 2026).
+// A better main video will replace this when one is made.
+const HERO_VIDEO = "/work/wayne-gretzky-sports-centre/video/wg-hero-720.mp4";
+const HERO_POSTER = "/work/wayne-gretzky-sports-centre/posters/wg-poster-16x9.webp";
 
 function fadeUp(delay: number): CSSProperties {
   return {
@@ -14,7 +19,6 @@ function fadeUp(delay: number): CSSProperties {
 }
 
 export default function Hero() {
-  const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,9 +33,6 @@ export default function Hero() {
         (document.scrollingElement && document.scrollingElement.scrollTop) ||
         window.pageYOffset ||
         0;
-      if (bgRef.current && y < vh() * 1.3) {
-        bgRef.current.style.transform = `translateY(${y * 0.22}px)`;
-      }
       if (contentRef.current && y < vh() * 1.1) {
         contentRef.current.style.transform = `translateY(${y * -0.06}px)`;
         contentRef.current.style.opacity = String(Math.max(0, 1 - y / 760));
@@ -52,28 +53,8 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* full-bleed background image (overscanned for parallax) */}
-      <div
-        ref={bgRef}
-        style={{
-          position: "absolute",
-          top: "-20%",
-          left: 0,
-          right: 0,
-          height: "140%",
-          zIndex: 0,
-          willChange: "transform",
-        }}
-      >
-        <div style={{ position: "absolute", inset: 0, background: "var(--slate-900)" }} />
-        <Image
-          src="/hero.png"
-          alt="An EV charging at a modern home at dusk — energy flowing from the car to a wall charger, a garage battery, and rooftop solar"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "58% 50%" }}
-        />
+      {/* full-bleed background video — same as the Gretzky hero */}
+      <LoopVideo src={HERO_VIDEO} poster={HERO_POSTER}>
         {/* subtle warm brand glow */}
         <div
           style={{
@@ -111,7 +92,7 @@ export default function Hero() {
               "linear-gradient(to right,rgba(10,13,18,.82) 0%,rgba(10,13,18,.42) 34%,transparent 64%)",
           }}
         />
-      </div>
+      </LoopVideo>
 
       <div ref={contentRef} style={{ position: "relative", zIndex: 1, width: "100%" }}>
         <div
